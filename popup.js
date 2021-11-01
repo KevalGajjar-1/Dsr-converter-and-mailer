@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('yes');
   // setDefaultDsr();
   chrome.storage.local.get('dsr', function (result) {
     if (result && result.dsr) {
@@ -26,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
       storeDsr('dsr', dsrTextInput);
       $temp.remove();
       alert("Text copied");
-      sendEmail('kevalkeval805@gmail.com', dsrTextInput.split('\n')[0], dsrTextInput);
-      // mailto('kevalkeval805@gmail.com', dsrTextInput.split('\n')[0], dsrTextInput);
+      // sendEmail('kevalkeval805@gmail.com', dsrTextInput.split('\n')[0], dsrTextInput);
+      mailto('kevalkeval805@gmail.com', dsrTextInput.split('\n')[0], dsrTextInput);
 
     });
   }, false);
@@ -56,7 +55,7 @@ function mailto(to, subject, body) {
   const url = "https://mail.google.com/mail?view=cm&tf=0" +
     (to ? ("&to=" + to) : "") +
     (subject ? ("&su=" + subject) : "") +
-    (body ? ("&body=" + body) : "");
+    (body ? ("&body=" + encodeURIComponent(body)) : "");
   window.open(url);
 }
 
