@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+  $ = jQuery;
+  $('.dsr-text').on('keyup', function () {
+    const dsrTextInput = $(this).val();
+    storeDsr('dsr', dsrTextInput);
+  });
+
   // setDefaultDsr();
   chrome.storage.local.get('dsr', function (result) {
     if (result && result.dsr) {
